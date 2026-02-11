@@ -1,0 +1,21 @@
+.gradient-bg {
+  background: linear-gradient(135deg,#4a3aff,#6a11cb);
+}
+
+.login-card {
+  width: 420px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.gradient-btn {
+  background: linear-gradient(90deg,#3b82f6,#6a11cb);
+  border: none;
+}
+
+.stat-card {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border-radius: 12px;
+  border: none;
+}

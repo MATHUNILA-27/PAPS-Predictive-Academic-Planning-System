@@ -1,0 +1,434 @@
+.dashboard-bg{
+  background:#f5f6f8;
+  min-height:100vh;
+}
+
+.topbar{
+  background:linear-gradient(90deg,#3b82f6,#6a11cb);
+}
+
+.logo-box{
+  background:rgba(255,255,255,0.2);
+  padding:10px;
+  border-radius:12px;
+}
+
+.menu-bar{
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.active-tab{
+  color:#3b82f6 !important;
+  border-bottom:2px solid #3b82f6;
+}
+
+.welcome-card{
+  background:linear-gradient(90deg,#3b82f6,#6a11cb);
+  border:none;
+  border-radius:16px;
+}
+
+.stat-box{
+  border-radius:14px;
+  border:none;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.progress-bar-green{
+  height:8px;
+  background:#16a34a;
+  border-radius:6px;
+  margin-top:10px;
+  width:85%;
+}
+
+.performance-card{
+  background:#ecfdf5;
+  border:1px solid #86efac;
+  border-radius:16px;
+}
+.notification-card{
+  border-radius:16px;
+  border:none;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.notification-item{
+  background:#eef4ff;
+  border-radius:12px;
+  border:1px solid #c7d2fe;
+}
+.course-card{
+  border-radius:16px;
+  border:none;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+
+.grade-badge{
+  background:#dcfce7;
+  color:#166534;
+  padding:6px 14px;
+  border-radius:20px;
+  font-weight:600;
+}
+
+.course-stat{
+  background:#f3f4f6;
+  padding:15px;
+  border-radius:12px;
+}
+
+.progress-bar-green{
+  height:8px;
+  background:#16a34a;
+  border-radius:6px;
+  margin-top:8px;
+  width:85%;
+}
+.cgpa-row{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-top:15px;
+}
+
+.cgpa-bar{
+  flex:1;
+  height:12px;
+  background:#e5e7eb;
+  border-radius:10px;
+}
+
+.cgpa-fill{
+  height:100%;
+  background:#2563eb;
+  border-radius:10px;
+}
+
+.summary{
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+  display:flex;
+  justify-content:space-between;
+  font-weight:600;
+}
+
+.summary.excellent{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.summary.good{
+  background:#e0e7ff;
+  color:#1e40af;
+}
+
+.summary.poor{
+  background:#fee2e2;
+  color:#991b1b;
+}
+.recommend-card{
+  border-radius:16px;
+  border:2px solid #bbf7d0;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.icon-box-green{
+  background:#dcfce7;
+  color:#15803d;
+  padding:12px;
+  border-radius:12px;
+  font-size:18px;
+}
+
+.recommended-badge{
+  background:#dcfce7;
+  color:#15803d;
+  padding:5px 12px;
+  border-radius:20px;
+  font-weight:600;
+}
+
+.prerequisite-box{
+  background:#eef2ff;
+  color:#1e40af;
+  padding:10px;
+  border-radius:10px;
+  margin-top:10px;
+}
+
+.add-plan-btn{
+  background:#16a34a;
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+}
+
+.add-plan-btn:hover{
+  background:#15803d;
+}
+.goal-progress-card{
+  background:linear-gradient(90deg,#9333ea,#ec4899);
+  border:none;
+  border-radius:18px;
+}
+
+.goal-progress-bar{
+  height:12px;
+  background:rgba(255,255,255,0.3);
+  border-radius:10px;
+}
+
+.add-goal-box{
+  border:2px dashed #cbd5e1;
+  padding:20px;
+  text-align:center;
+  border-radius:14px;
+  color:#334155;
+  font-weight:600;
+}
+
+.goal-item{
+  border-radius:16px;
+  border:none;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.goal-radio{
+  width:22px;
+  height:22px;
+  border:2px solid #9ca3af;
+  border-radius:50%;
+  margin-right:15px;
+}
+
+.goal-progress-container{
+  height:10px;
+  background:#e5e7eb;
+  border-radius:10px;
+}
+
+.goal-progress-fill{
+  height:100%;
+  background:#2563eb;
+  border-radius:10px;
+}
+.dashboard-bg{
+  background:#f5f6f8;
+  min-height:100vh;
+}
+
+.topbar{
+  background:linear-gradient(90deg,#3b82f6,#6a11cb);
+}
+
+.logo-box{
+  background:rgba(255,255,255,0.2);
+  padding:10px;
+  border-radius:12px;
+}
+
+.menu-bar{
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.active-tab{
+  color:#3b82f6 !important;
+  border-bottom:2px solid #3b82f6;
+}
+
+.welcome-card{
+  background:linear-gradient(90deg,#3b82f6,#6a11cb);
+  border:none;
+  border-radius:16px;
+}
+
+.stat-box{
+  border-radius:14px;
+  border:none;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.progress-bar-green{
+  height:8px;
+  background:#16a34a;
+  border-radius:6px;
+  margin-top:10px;
+  width:85%;
+}
+
+.performance-card{
+  background:#ecfdf5;
+  border:1px solid #86efac;
+  border-radius:16px;
+}
+.notification-card{
+  border-radius:16px;
+  border:none;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.notification-item{
+  background:#eef4ff;
+  border-radius:12px;
+  border:1px solid #c7d2fe;
+}
+.course-card{
+  border-radius:16px;
+  border:none;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+
+.grade-badge{
+  background:#dcfce7;
+  color:#166534;
+  padding:6px 14px;
+  border-radius:20px;
+  font-weight:600;
+}
+
+.course-stat{
+  background:#f3f4f6;
+  padding:15px;
+  border-radius:12px;
+}
+
+.progress-bar-green{
+  height:8px;
+  background:#16a34a;
+  border-radius:6px;
+  margin-top:8px;
+  width:85%;
+}
+.cgpa-row{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-top:15px;
+}
+
+.cgpa-bar{
+  flex:1;
+  height:12px;
+  background:#e5e7eb;
+  border-radius:10px;
+}
+
+.cgpa-fill{
+  height:100%;
+  background:#2563eb;
+  border-radius:10px;
+}
+
+.summary{
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+  display:flex;
+  justify-content:space-between;
+  font-weight:600;
+}
+
+.summary.excellent{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.summary.good{
+  background:#e0e7ff;
+  color:#1e40af;
+}
+
+.summary.poor{
+  background:#fee2e2;
+  color:#991b1b;
+}
+.recommend-card{
+  border-radius:16px;
+  border:2px solid #bbf7d0;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.icon-box-green{
+  background:#dcfce7;
+  color:#15803d;
+  padding:12px;
+  border-radius:12px;
+  font-size:18px;
+}
+
+.recommended-badge{
+  background:#dcfce7;
+  color:#15803d;
+  padding:5px 12px;
+  border-radius:20px;
+  font-weight:600;
+}
+
+.prerequisite-box{
+  background:#eef2ff;
+  color:#1e40af;
+  padding:10px;
+  border-radius:10px;
+  margin-top:10px;
+}
+
+.add-plan-btn{
+  background:#16a34a;
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+}
+
+.add-plan-btn:hover{
+  background:#15803d;
+}
+.goal-progress-card{
+  background:linear-gradient(90deg,#9333ea,#ec4899);
+  border:none;
+  border-radius:18px;
+}
+
+.goal-progress-bar{
+  height:12px;
+  background:rgba(255,255,255,0.3);
+  border-radius:10px;
+}
+
+.add-goal-box{
+  border:2px dashed #cbd5e1;
+  padding:20px;
+  text-align:center;
+  border-radius:14px;
+  color:#334155;
+  font-weight:600;
+}
+
+.goal-item{
+  border-radius:16px;
+  border:none;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.goal-radio{
+  width:22px;
+  height:22px;
+  border:2px solid #9ca3af;
+  border-radius:50%;
+  margin-right:15px;
+}
+
+.goal-progress-container{
+  height:10px;
+  background:#e5e7eb;
+  border-radius:10px;
+}
+
+.goal-progress-fill{
+  height:100%;
+  background:#2563eb;
+  border-radius:10px;
+}
