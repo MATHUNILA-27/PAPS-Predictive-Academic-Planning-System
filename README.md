@@ -1,10 +1,4 @@
 # 🎓 Predictive Academic Planning System (PAPS)
-
-**Name:** MATHUNILA K  
-**Register Number:** 7373232IT196  
-**Course:** B.Tech Information Technology  
-**Project Type:** Academic Project  
-
 ---
 
 ## 📌 Project Description
@@ -208,4 +202,3 @@ The Predictive Academic Planning System (PAPS) provides a scalable and data-driv
 
 ---
 
-⭐ Developed by **MATHUNILA K**
