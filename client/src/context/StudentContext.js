@@ -1,21 +1,24 @@
-import { createContext, useState } from "react";
+import {createContext,useContext,useState} from "react";
+import api from "../utils/axiosConfig";
 
-export const StudentContext = createContext();
+const StudentContext=createContext();
 
-export function StudentProvider({ children }) {
+export function StudentProvider({children}){
 
-  const [student, setStudent] = useState(null);
+const [student,setStudent]=useState(null);
 
-  /* ✅ GLOBAL LOGOUT */
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    setStudent(null);
-  };
+const loadStudent=async()=>{
+const id=localStorage.getItem("userId");
+if(!id) return;
+const res=await api.get(`/student/${id}`);
+setStudent(res.data);
+};
 
-  return (
-    <StudentContext.Provider value={{ student, setStudent, logout }}>
-      {children}
-    </StudentContext.Provider>
-  );
+return(
+<StudentContext.Provider value={{student,setStudent,loadStudent}}>
+{children}
+</StudentContext.Provider>
+);
 }
+
+export const useStudent=()=>useContext(StudentContext);

@@ -1,63 +1,63 @@
-const express = require("express");
-const router = express.Router();
+const router=require("express").Router();
+const User=require("../models/User");
+const Student=require("../models/StudentData");
+const bcrypt=require("bcryptjs");
+const jwt=require("jsonwebtoken");
 
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const SECRET="SECRET123";
 
-/* ================= REGISTER ================= */
-router.post("/register", async (req, res) => {
-  try {
-    const { fullName, role, email, password } = req.body;
+router.post("/register",async(req,res)=>{
+try{
+const {fullName,role,email,password}=req.body;
 
-    const exists = await User.findOne({ email });
-    if (exists) return res.status(400).json({ msg: "User exists" });
+if(!fullName||!role||!email||!password)
+return res.status(400).json({msg:"Missing fields"});
 
-    const hash = await bcrypt.hash(password, 10);
+const exists=await User.findOne({email});
+if(exists) return res.status(400).json({msg:"Email exists"});
 
-    const newUser = new User({
-      fullName,
-      role,
-      email,
-      password: hash,
-    });
+const hash=await bcrypt.hash(password,10);
 
-    await newUser.save();
-
-    res.json({ msg: "Registered Successfully" });
-
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ msg: "Server error" });
-  }
+const newUser=await User.create({
+fullName,
+role:role.toLowerCase(),
+email,
+password:hash
 });
 
-/* ================= LOGIN ================= */
-router.post("/login", async (req, res) => {
-  try {
+if(role.toLowerCase()==="student"){
+await Student.create({
+userId:newUser._id,
+courses:[],
+goals:[]
+});
+}
 
-    const { email, password } = req.body;
+const token=jwt.sign({id:newUser._id},SECRET,{expiresIn:"7d"});
 
-    const user = await User.findOne({ email });
+res.json({token,user:newUser});
 
-    if (!user) return res.status(400).json({ msg: "User not found" });
-
-    const valid = await bcrypt.compare(password, user.password);
-
-    if (!valid) return res.status(400).json({ msg: "Wrong password" });
-
-    const token = jwt.sign({ id: user._id }, "SECRET");
-
-    res.json({
-      token,
-      userId: user._id,
-      role: user.role
-    });
-
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ msg: "Login error" });
-  }
+}catch(e){res.status(500).json({msg:"Register failed"});}
 });
 
-module.exports = router;
+router.post("/login",async(req,res)=>{
+try{
+const {email,password,role}=req.body;
+
+const user=await User.findOne({email});
+if(!user) return res.status(400).json({msg:"User not found"});
+
+if(user.role!==role)
+return res.status(400).json({msg:"Wrong role selected"});
+
+const ok=await bcrypt.compare(password,user.password);
+if(!ok) return res.status(400).json({msg:"Wrong password"});
+
+const token=jwt.sign({id:user._id},"SECRET123",{expiresIn:"7d"});
+
+res.json({token,user});
+
+}catch(e){res.status(500).json({msg:"Login failed"});}
+});
+
+module.exports=router;

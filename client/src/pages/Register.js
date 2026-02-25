@@ -28,11 +28,12 @@ export default function Register() {
 
     try {
 
+      // ✅ SEND CORRECT FIELD NAME
       await axios.post(
         "http://localhost:5000/api/auth/register",
         {
-          name: formData.fullName,   
-          role: selectedRole,
+          fullName: formData.fullName,
+          role: selectedRole.toLowerCase(),
           email: formData.email,
           password: formData.password,
         }
@@ -40,12 +41,12 @@ export default function Register() {
 
       alert("Account Created Successfully");
 
-      // ✅ After register → go to login
-      navigate("/");
-
+      // ✅ redirect to login
+      navigate("/login");
+ 
     } catch (err) {
+      console.log(err.response?.data);
       alert(err.response?.data?.msg || "Register Failed");
-      console.log(err.response);
     }
   };
 
@@ -149,7 +150,7 @@ export default function Register() {
                 />
               </Form.Group>
 
-              <Button type="submit" className="w-100 gradient-btn">
+              <Button type="submit" className="w-100 gradient-btn" onClick={handleRegister}>
                 <FaUserPlus/> Create Account
               </Button>
 

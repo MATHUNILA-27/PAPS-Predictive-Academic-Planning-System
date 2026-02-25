@@ -432,3 +432,10 @@
   background:#2563eb;
   border-radius:10px;
 }
+.goal-number-input{
+  width:60px;
+  margin-left:5px;
+  border:none;
+  border-bottom:1px solid #ccc;
+  outline:none;
+}

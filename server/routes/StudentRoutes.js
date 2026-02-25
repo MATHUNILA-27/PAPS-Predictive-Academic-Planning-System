@@ -1,48 +1,51 @@
-const express = require("express");
-const router = express.Router();
+const router=require("express").Router();
+const mongoose=require("mongoose");
+const Student=require("../models/StudentData");
 
-const StudentData = require("../models/StudentData");
+const toId=id=>new mongoose.Types.ObjectId(id);
 
-/* ================= GET / CREATE STUDENT ================= */
-router.get("/:userId", async (req, res) => {
-
-  let data = await StudentData.findOne({
-    userId: req.params.userId
-  });
-
-  if (!data) {
-    data = await StudentData.create({
-      userId: req.params.userId,
-      courses: [],
-      goals: []
-    });
-  }
-
-  res.json(data);
+/* GET STUDENT */
+router.get("/:userId",async(req,res)=>{
+const student=await Student.findOne({userId:toId(req.params.userId)});
+res.json(student);
 });
 
-/* ================= ADD GOAL ================= */
-router.post("/goal/:userId", async (req, res) => {
-  const data = await StudentData.findOne({ userId: req.params.userId });
-  data.goals.push(req.body);
-  await data.save();
-  res.json(data);
+/* UPDATE PROFILE */
+router.put("/profile/:userId",async(req,res)=>{
+const student=await Student.findOneAndUpdate(
+{userId:toId(req.params.userId)},
+req.body,
+{new:true}
+);
+res.json(student);
 });
 
-/* ================= UPDATE COURSES ================= */
-router.put("/courses/:userId", async (req, res) => {
-  const data = await StudentData.findOne({ userId: req.params.userId });
-  data.courses = req.body;
-  await data.save();
-  res.json(data);
+/* UPDATE COURSES */
+router.put("/courses/:userId",async(req,res)=>{
+const student=await Student.findOneAndUpdate(
+{userId:toId(req.params.userId)},
+{courses:req.body},
+{new:true}
+);
+res.json(student);
 });
 
-/* ================= UPDATE GOALS ================= */
-router.put("/updateGoals/:userId", async (req, res) => {
-  const data = await StudentData.findOne({ userId: req.params.userId });
-  data.goals = req.body;
-  await data.save();
-  res.json(data);
+/* UPDATE GOALS */
+router.put("/goals/:userId",async(req,res)=>{
+const student=await Student.findOneAndUpdate(
+{userId:toId(req.params.userId)},
+{goals:req.body},
+{new:true}
+);
+res.json(student);
 });
 
-module.exports = router;
+/* ADD GOAL */
+router.post("/goal/:userId",async(req,res)=>{
+const student=await Student.findOne({userId:toId(req.params.userId)});
+student.goals.push(req.body);
+await student.save();
+res.json(student);
+});
+
+module.exports=router;

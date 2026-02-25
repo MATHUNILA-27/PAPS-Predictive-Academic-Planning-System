@@ -1,142 +1,129 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { FaUserGraduate, FaUserTie, FaUserShield } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; // ✅ IMPORTANT
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import api from "../utils/axiosConfig";
 import "./login.css";
 
-export default function Login() {
+export default function Login(){
 
-  const navigate = useNavigate(); // ✅ navigation enabled
+const navigate=useNavigate();
 
-  const [selectedRole, setSelectedRole] = useState("Student");
+const [role,setRole]=useState("student");
+const [email,setEmail]=useState("");
+const [password,setPassword]=useState("");
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: ""
-  });
+const handleLogin=async(e)=>{
+e.preventDefault();
 
-  const handleLogin = async (e) => {
-  e.preventDefault();
+try{
 
-  try {
+const res=await api.post(
+"/auth/login",
+{email,password,role}
+);
 
-    const res = await axios.post(
-      "http://localhost:5000/api/auth/login",
-      {
-        email: formData.email,
-        password: formData.password,
-      }
-    );
+localStorage.setItem("token",res.data.token);
+localStorage.setItem("userId",res.data.user._id);
+localStorage.setItem("role",res.data.user.role);
+localStorage.setItem("name",res.data.user.fullName);
 
-    localStorage.setItem("token", res.data.token);
-    localStorage.setItem("userId", res.data.userId);
+navigate(`/${res.data.user.role}-dashboard`);
 
-    navigate("/student-dashboard");
-
-  } catch (err) {
-    alert(err.response?.data?.msg || "Login Failed");
-  }
+}catch(err){
+alert(err.response?.data?.msg || "Login failed");
+}
 };
 
-  return (
-    <Container fluid className="vh-100 d-flex align-items-center gradient-bg">
-      <Row className="w-100">
+return (
+<Container fluid className="vh-100 d-flex align-items-center gradient-bg">
+<Row className="w-100">
 
-        {/* LEFT SIDE */}
-        <Col md={6} className="text-white px-5">
-          <h2 className="fw-bold">PAPS</h2>
+<Col md={6} className="text-white px-5">
+<h2 className="fw-bold">PAPS</h2>
+<h1 className="mt-4 fw-bold">
+Empowering Education Through Data-Driven Insights
+</h1>
+<p>
+Monitor student performance, predict academic outcomes,
+and provide personalized guidance for academic success.
+</p>
+</Col>
 
-          <h1 className="mt-4 fw-bold">
-            Empowering Education Through Data-Driven Insights
-          </h1>
+<Col md={6} className="d-flex justify-content-center">
+<Card className="login-card p-4">
 
-          <p>
-            Monitor student performance, predict academic outcomes,
-            and provide personalized guidance for academic success.
-          </p>
-        </Col>
+<h5 className="text-center mb-3">Sign in to your account</h5>
 
-        {/* RIGHT SIDE */}
-        <Col md={6} className="d-flex justify-content-center">
-          <Card className="login-card p-4">
+<div className="d-flex gap-2 mb-3">
 
-            <h5 className="text-center mb-3">Sign in to your account</h5>
+<Button
+type="button"
+variant={role==="student"?"primary":"outline-secondary"}
+onClick={()=>setRole("student")}
+>
+<FaUserGraduate/> Student
+</Button>
 
-            <div className="d-flex gap-2 mb-3">
+<Button
+type="button"
+variant={role==="faculty"?"primary":"outline-secondary"}
+onClick={()=>setRole("faculty")}
+>
+<FaUserTie/> Faculty
+</Button>
 
-              <Button
-                variant={selectedRole === "Student" ? "primary" : "outline-secondary"}
-                onClick={() => setSelectedRole("Student")}
-              >
-                <FaUserGraduate /> Student
-              </Button>
+<Button
+type="button"
+variant={role==="admin"?"primary":"outline-secondary"}
+onClick={()=>setRole("admin")}
+>
+<FaUserShield/> Admin
+</Button>
 
-              <Button
-                variant={selectedRole === "Faculty" ? "primary" : "outline-secondary"}
-                onClick={() => setSelectedRole("Faculty")}
-              >
-                <FaUserTie /> Faculty
-              </Button>
+</div>
 
-              <Button
-                variant={selectedRole === "Admin" ? "primary" : "outline-secondary"}
-                onClick={() => setSelectedRole("Admin")}
-              >
-                <FaUserShield /> Admin
-              </Button>
+<Form onSubmit={handleLogin}>
 
-            </div>
+<Form.Group className="mb-3">
+<Form.Control
+placeholder="Enter your email"
+required
+value={email}
+onChange={(e)=>setEmail(e.target.value)}
+/>
+</Form.Group>
 
-            <Form onSubmit={handleLogin}>
+<Form.Group className="mb-3">
+<Form.Control
+type="password"
+placeholder="Enter your password"
+required
+value={password}
+onChange={(e)=>setPassword(e.target.value)}
+/>
+</Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Control
-                  placeholder="Enter your email"
-                  required
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                />
-              </Form.Group>
+<Button type="submit" className="w-100 gradient-btn">
+Sign In
+</Button>
 
-              <Form.Group className="mb-3">
-                <Form.Control
-                  type="password"
-                  placeholder="Enter your password"
-                  required
-                  onChange={(e) =>
-                    setFormData({ ...formData, password: e.target.value })
-                  }
-                />
-              </Form.Group>
+</Form>
 
-              <Button type="submit" className="w-100 gradient-btn">
-                Sign In
-              </Button>
+<p className="text-center mt-3 mb-0">
+New user?{" "}
+<span
+style={{color:"#0d6efd", cursor:"pointer", fontWeight:"500"}}
+onClick={()=>navigate("/register")}
+>
+Create Account
+</span>
+</p>
 
-            </Form>
+</Card>
+</Col>
 
-            <Button className="w-100 mt-3" variant="light">
-              Sign in with Google
-            </Button>
-
-            {/* ✅ NAVIGATE TO REGISTER PAGE */}
-            <p className="text-center mt-3">
-              Don't have an account?{" "}
-              <span
-                className="text-primary"
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate("/register")}
-              >
-                Register
-              </span>
-            </p>
-
-          </Card>
-        </Col>
-
-      </Row>
-    </Container>
-  );
+</Row>
+</Container>
+);
 }
